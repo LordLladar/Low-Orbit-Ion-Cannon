@@ -1,0 +1,25 @@
+Plugin intially by Xesxen @ http://forums.bukkit.org/threads/fun-ioncannon-v1-3-1-1000.6153/ for my educational endeviors. Xesxen, if you are reading this, thanks for the help man! :D
+
+Upcoming Changes
+
+-= Optimization =-
+* Cancel BlockDispenseEvent for blocks destroyed.
+* Instead of a whole row of TNT, each TNT block will be spaced out just right to get the same effect and use less TNT.
+
+-= Features =-
+*Driveable satellite that shoots Ion Cannon.
+*Particle effects.
+*Possibility of removing TNT and blasting a half sphere into the ground.
+  -Keep tnt partical effect and blast sounds.
+
+-= Credits =-
+*Xesxen
+  -For base code
+*LordLladar
+  -For modifying / Optimizing code
+*Nijiko
+  -For permissions handeling code
+*Bukkit
+  -For being the best, and only, server API
+*DinnerBone
+  -For his Youtube Tutorials that are AMAZING!!!

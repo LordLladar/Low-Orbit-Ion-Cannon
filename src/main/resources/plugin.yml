@@ -1,0 +1,15 @@
+author: LordLladar & Xensen
+database: false
+description: Blows shit up with the Low Orbit Ion Cannon
+main: me.lordlladar.plugins.loworbitioncannon.Loic
+name: Low Orbit Ion Cannon
+startup: postworld
+version: 1.0
+permissions:
+  ioncannon.fire:
+    default: op
+    description: Fire Ion Cannon
+commands:
+  IonCannon:
+    description: BOOM BOOM BOOM
+    usage: /<command> [size]

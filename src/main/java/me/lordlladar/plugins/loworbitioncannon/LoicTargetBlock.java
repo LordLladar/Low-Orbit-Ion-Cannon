@@ -39,25 +39,31 @@ public class LoicTargetBlock {
     setValues(loc, maxDistance, 0.0D, checkDistance, null);
   }
 
-  public LoicTargetBlock(Player player, int maxDistance, double checkDistance, int[] blocksToIgnore) {
-    setValues(player.getLocation(), maxDistance, 1.65D, checkDistance, blocksToIgnore);
+  public LoicTargetBlock(Player player, int maxDistance, double checkDistance, 
+          int[] blocksToIgnore) {
+    setValues(player.getLocation(), maxDistance, 1.65D, checkDistance, 
+            blocksToIgnore);
   }
 
-  public LoicTargetBlock(Location loc, int maxDistance, double checkDistance, int[] blocksToIgnore) {
+  public LoicTargetBlock(Location loc, int maxDistance, double checkDistance, 
+          int[] blocksToIgnore) {
     setValues(loc, maxDistance, 0.0D, checkDistance, blocksToIgnore);
   }
 
-  public LoicTargetBlock(Player player, int maxDistance, double checkDistance, ArrayList<String> blocksToIgnore) {
+  public LoicTargetBlock(Player player, int maxDistance, double checkDistance, 
+          ArrayList<String> blocksToIgnore) {
     int[] bti = convertStringArraytoIntArray(blocksToIgnore);
     setValues(player.getLocation(), maxDistance, 1.65D, checkDistance, bti);
   }
 
-  public LoicTargetBlock(Location loc, int maxDistance, double checkDistance, ArrayList<String> blocksToIgnore) {
+  public LoicTargetBlock(Location loc, int maxDistance, double checkDistance, 
+          ArrayList<String> blocksToIgnore) {
     int[] bti = convertStringArraytoIntArray(blocksToIgnore);
     setValues(loc, maxDistance, 0.0D, checkDistance, bti);
   }
 
-  private void setValues(Location loc, int maxDistance, double viewHeight, double checkDistance, int[] blocksToIgnore) {
+  private void setValues(Location loc, int maxDistance, double viewHeight, 
+          double checkDistance, int[] blocksToIgnore) {
     this.loc = loc;
     this.maxDistance = maxDistance;
     this.viewHeight = viewHeight;
@@ -72,14 +78,18 @@ public class LoicTargetBlock {
     this.offset.setX(h * Math.cos(Math.toRadians(this.xRotation)));
     this.offset.setZ(h * Math.sin(Math.toRadians(this.xRotation)));
 
-    this.targetPosDouble = new Vector(loc.getX(), loc.getY() + viewHeight, loc.getZ());
-    this.targetPos = new Vector(this.targetPosDouble.getBlockX(), this.targetPosDouble.getBlockY(), this.targetPosDouble.getBlockZ());
+    this.targetPosDouble = new Vector(loc.getX(), loc.getY() + viewHeight, 
+            loc.getZ());
+    this.targetPos = new Vector(this.targetPosDouble.getBlockX(), 
+            this.targetPosDouble.getBlockY(), this.targetPosDouble.getBlockZ());
     this.prevPos = this.targetPos.clone();
   }
 
   public void reset() {
-    this.targetPosDouble = new Vector(this.loc.getX(), this.loc.getY() + this.viewHeight, this.loc.getZ());
-    this.targetPos = new Vector(this.targetPosDouble.getBlockX(), this.targetPosDouble.getBlockY(), this.targetPosDouble.getBlockZ());
+    this.targetPosDouble = new Vector(this.loc.getX(), this.loc.getY() 
+            + this.viewHeight, this.loc.getZ());
+    this.targetPos = new Vector(this.targetPosDouble.getBlockX(), 
+            this.targetPosDouble.getBlockY(), this.targetPosDouble.getBlockZ());
     this.prevPos = this.targetPos.clone();
     this.curDistance = 0.0D;
   }
@@ -109,27 +119,32 @@ public class LoicTargetBlock {
     double y = blk.getY() - blockUnderPlayer.getBlockY();
     double z = blk.getZ() - blockUnderPlayer.getBlockZ();
 
-    return (int)Math.round(Math.sqrt(Math.pow(x, 2.0D) + Math.pow(y, 2.0D) + Math.pow(z, 2.0D)));
+    return (int)Math.round(Math.sqrt(Math.pow(x, 2.0D) + Math.pow(y, 2.0D) 
+            + Math.pow(z, 2.0D)));
   }
 
   public int getXDistanceToBlock() {
     reset();
-    return (int)Math.floor(getTargetBlock().getX() - this.loc.getBlockX() + 0.5D);
+    return (int)Math.floor(getTargetBlock().getX() 
+            - this.loc.getBlockX() + 0.5D);
   }
 
   public int getYDistanceToBlock() {
     reset();
-    return (int)Math.floor(getTargetBlock().getY() - this.loc.getBlockY() + this.viewHeight);
+    return (int)Math.floor(getTargetBlock().getY() - this.loc.getBlockY() 
+            + this.viewHeight);
   }
 
   public int getZDistanceToBlock() {
     reset();
-    return (int)Math.floor(getTargetBlock().getZ() - this.loc.getBlockZ() + 0.5D);
+    return (int)Math.floor(getTargetBlock().getZ() - this.loc.getBlockZ() 
+            + 0.5D);
   }
 
   public Block getTargetBlock() {
     reset();
-    while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || (blockToIgnoreHasValue(getCurrentBlock().getTypeId()))));
+    while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || 
+            (blockToIgnoreHasValue(getCurrentBlock().getTypeId()))));
     return getCurrentBlock();
   }
 
@@ -140,7 +155,8 @@ public class LoicTargetBlock {
       while ((getNextBlock() != null) && (getCurrentBlock().getTypeId() == 0));
       if (getCurrentBlock() != null)
       {
-        Block blk = this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), this.targetPos.getBlockY(), this.targetPos.getBlockZ());
+        Block blk = this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), 
+                this.targetPos.getBlockY(), this.targetPos.getBlockZ());
         blk.setTypeId(typeID);
         return true;
       }
@@ -150,10 +166,12 @@ public class LoicTargetBlock {
 
   public boolean setTargetBlock(Material type) {
     reset();
-    while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || (blockToIgnoreHasValue(getCurrentBlock().getTypeId()))));
+    while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || 
+            (blockToIgnoreHasValue(getCurrentBlock().getTypeId()))));
     
     if (getCurrentBlock() != null) {
-      Block blk = this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), this.targetPos.getBlockY(), this.targetPos.getBlockZ());
+      Block blk = this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), 
+              this.targetPos.getBlockY(), this.targetPos.getBlockZ());
       blk.setType(type);
       return true;
     }
@@ -165,10 +183,12 @@ public class LoicTargetBlock {
     
     if (mat != null) {
       reset();
-      while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || (blockToIgnoreHasValue(getCurrentBlock().getTypeId()))));
+      while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0)
+              || (blockToIgnoreHasValue(getCurrentBlock().getTypeId()))));
       
       if (getCurrentBlock() != null) {
-        Block blk = this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), this.targetPos.getBlockY(), this.targetPos.getBlockZ());
+        Block blk = this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), 
+                this.targetPos.getBlockY(), this.targetPos.getBlockZ());
         blk.setType(mat);
         return true;
       }
@@ -177,7 +197,8 @@ public class LoicTargetBlock {
   }
 
   public Block getFaceBlock() {
-    while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || (blockToIgnoreHasValue(getCurrentBlock().getTypeId()))));
+    while ((getNextBlock() != null) && ((getCurrentBlock().getTypeId() == 0) || 
+            (blockToIgnoreHasValue(getCurrentBlock().getTypeId()))));
     
     if (getCurrentBlock() != null) {
       return getPreviousBlock();
@@ -191,7 +212,8 @@ public class LoicTargetBlock {
     if (Material.getMaterial(typeID) != null){
         
       if (getCurrentBlock() != null) {
-        Block blk = this.loc.getWorld().getBlockAt(this.prevPos.getBlockX(), this.prevPos.getBlockY(), this.prevPos.getBlockZ());
+        Block blk = this.loc.getWorld().getBlockAt(this.prevPos.getBlockX(), 
+                this.prevPos.getBlockY(), this.prevPos.getBlockZ());
         blk.setTypeId(typeID);
         return true;
       }
@@ -202,7 +224,8 @@ public class LoicTargetBlock {
   public boolean setFaceBlock(Material type) {
       
     if (getCurrentBlock() != null) {
-      Block blk = this.loc.getWorld().getBlockAt(this.prevPos.getBlockX(), this.prevPos.getBlockY(), this.prevPos.getBlockZ());
+      Block blk = this.loc.getWorld().getBlockAt(this.prevPos.getBlockX(), 
+              this.prevPos.getBlockY(), this.prevPos.getBlockZ());
       blk.setType(type);
       return true;
     }
@@ -215,7 +238,8 @@ public class LoicTargetBlock {
     if (mat != null) {
         
       if (getCurrentBlock() != null) {
-        Block blk = this.loc.getWorld().getBlockAt(this.prevPos.getBlockX(), this.prevPos.getBlockY(), this.prevPos.getBlockZ());
+        Block blk = this.loc.getWorld().getBlockAt(this.prevPos.getBlockX(), 
+                this.prevPos.getBlockY(), this.prevPos.getBlockZ());
         blk.setType(mat);
         return true;
       }
@@ -229,18 +253,27 @@ public class LoicTargetBlock {
     do {
       this.curDistance += this.checkDistance;
 
-      this.targetPosDouble.setX(this.offset.getX() + this.targetPosDouble.getX());
-      this.targetPosDouble.setY(this.offset.getY() + this.targetPosDouble.getY());
-      this.targetPosDouble.setZ(this.offset.getZ() + this.targetPosDouble.getZ());
-      this.targetPos = new Vector(this.targetPosDouble.getBlockX(), this.targetPosDouble.getBlockY(), this.targetPosDouble.getBlockZ());
+      this.targetPosDouble.setX(this.offset.getX() 
+              + this.targetPosDouble.getX());
+      this.targetPosDouble.setY(this.offset.getY() 
+              + this.targetPosDouble.getY());
+      this.targetPosDouble.setZ(this.offset.getZ() 
+              + this.targetPosDouble.getZ());
+      this.targetPos = new Vector(this.targetPosDouble.getBlockX(), 
+              this.targetPosDouble.getBlockY(), 
+              this.targetPosDouble.getBlockZ());
     }
-    while ((this.curDistance <= this.maxDistance) && (this.targetPos.getBlockX() == this.prevPos.getBlockX()) && (this.targetPos.getBlockY() == this.prevPos.getBlockY()) && (this.targetPos.getBlockZ() == this.prevPos.getBlockZ()));
+    while ((this.curDistance <= this.maxDistance) && 
+            (this.targetPos.getBlockX() == this.prevPos.getBlockX()) 
+            && (this.targetPos.getBlockY() == this.prevPos.getBlockY()) 
+            && (this.targetPos.getBlockZ() == this.prevPos.getBlockZ()));
     
     if (this.curDistance > this.maxDistance) {
       return null;
     }
 
-    return this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), this.targetPos.getBlockY(), this.targetPos.getBlockZ());
+    return this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), 
+            this.targetPos.getBlockY(), this.targetPos.getBlockZ());
   }
 
   public Block getCurrentBlock()
@@ -250,7 +283,8 @@ public class LoicTargetBlock {
       return null;
     }
 
-    return this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), this.targetPos.getBlockY(), this.targetPos.getBlockZ());
+    return this.loc.getWorld().getBlockAt(this.targetPos.getBlockX(), 
+            this.targetPos.getBlockY(), this.targetPos.getBlockZ());
   }
 
   public boolean setCurrentBlock(int typeID) {
@@ -291,7 +325,8 @@ public class LoicTargetBlock {
   }
 
   public Block getPreviousBlock() {
-    return this.loc.getWorld().getBlockAt(this.prevPos.getBlockX(), this.prevPos.getBlockY(), this.prevPos.getBlockZ());
+    return this.loc.getWorld().getBlockAt(this.prevPos.getBlockX(), 
+            this.prevPos.getBlockY(), this.prevPos.getBlockZ());
   }
 
   public boolean setPreviousBlock(int typeID) {

@@ -7,7 +7,6 @@ import org.bukkit.event.player.PlayerListener;
 public class LoicPlayerListener extends PlayerListener {
     private final Loic plugin;
     boolean fail = false;
-    int health = 0;
     
     public LoicPlayerListener(Loic instance) {
         this.plugin = instance;
